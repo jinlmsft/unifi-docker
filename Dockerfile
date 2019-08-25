@@ -61,8 +61,7 @@ COPY docker-healthcheck.sh /usr/local/bin/
 COPY docker-build.sh /usr/local/bin/
 COPY functions /usr/unifi/functions
 COPY import_cert /usr/unifi/init.d/
-COPY system.properties /usr/unifi/data/system.properties
-COPY system.properties /unifi/data/system.properties
+
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh \
  && chmod +x /usr/unifi/init.d/import_cert \
  && chmod +x /usr/local/bin/docker-healthcheck.sh \
@@ -82,6 +81,8 @@ EXPOSE 6789/tcp 8080/tcp 8443/tcp 8880/tcp 8843/tcp 3478/udp
 WORKDIR /unifi
 
 HEALTHCHECK CMD /usr/local/bin/docker-healthcheck.sh || exit 1
+
+COPY system.properties /usr/lib/unifi/data/system.properties
 
 # execute controller using JSVC like original debian package does
 ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
