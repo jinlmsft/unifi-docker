@@ -82,7 +82,7 @@ WORKDIR /unifi
 
 HEALTHCHECK CMD /usr/local/bin/docker-healthcheck.sh || exit 1
 
-COPY system.properties /usr/lib/unifi/data/system.properties
+# COPY system.properties /usr/lib/unifi/data/system.properties
 
 # execute controller using JSVC like original debian package does
 ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
