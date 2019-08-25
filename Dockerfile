@@ -61,6 +61,8 @@ COPY docker-healthcheck.sh /usr/local/bin/
 COPY docker-build.sh /usr/local/bin/
 COPY functions /usr/unifi/functions
 COPY import_cert /usr/unifi/init.d/
+COPY system.properties /usr/unifi/data/system.properties
+COPY system.properties /unifi/data/system.properties
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh \
  && chmod +x /usr/unifi/init.d/import_cert \
  && chmod +x /usr/local/bin/docker-healthcheck.sh \
