@@ -50,6 +50,9 @@ rm -f ./unifi.deb
 chown -R unifi:unifi /usr/lib/unifi
 rm -rf /var/lib/apt/lists/*
 
+# Install ssh server
+apt-get install -y openssh-server  
+
 rm -rf ${ODATADIR} ${OLOGDIR}
 mkdir -p ${DATADIR} ${LOGDIR}
 ln -s ${DATADIR} ${BASEDIR}/data
