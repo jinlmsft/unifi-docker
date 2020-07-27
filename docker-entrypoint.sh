@@ -151,13 +151,14 @@ cd ${BASEDIR}
 
 CUID=$(id -u)
 
+if [[ -n ${UNIFI_SSH_PASSWD} ]]; then 
+  usermod -p $(echo ${UNIFI_SSH_PASSWD} | openssl passwd -1 -stdin) root 
+  echo "PermitRootLogin yes" >> /etc/ssh/sshd_config
+fi; 
 if [[ -n ${UNIFI_SSH_PORT} ]]; then 
   echo "Port ${UNIFI_SSH_PORT}" >> /etc/ssh/sshd_config
 fi;
 service ssh restart
-if [[ -n ${UNIFI_SSH_PASSWD} ]]; then 
-  usermod -p $(echo ${UNIFI_SSH_PASSWD} | openssl passwd -1 -stdin) root 
-fi; 
 
 
 if [[ "${@}" == "unifi" ]]; then
